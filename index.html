@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Empire Network | Remote Cleaning Mentorship Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080d;--bg2:#0a0e16;--panel:#0e131d;--panel2:#121928;--line:#1d2638;--line2:#2a3650;
+  --gold:#e8b44f;--gold2:#c38a2a;--goldglow:rgba(232,180,79,.18);
+  --blue:#3d7bff;--blue2:#2a5bd6;--blueglow:rgba(61,123,255,.18);
+  --text:#eaeef6;--muted:#8d97ab;--dim:#5d6780;--green:#35c98f;--red:#ff5d6c;--amber:#ffb547;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.55}
+body{background:radial-gradient(1200px 600px at 80% -10%,rgba(61,123,255,.10),transparent 60%),radial-gradient(900px 500px at -10% 10%,rgba(232,180,79,.07),transparent 60%),var(--bg);min-height:100vh}
+a{color:var(--gold)}
+button{font-family:inherit}
+.serif{font-family:Cinzel,Georgia,serif;letter-spacing:.04em}
+#app{display:flex;min-height:100vh}
+/* SIDEBAR */
+#side{width:280px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;background:linear-gradient(180deg,#080b12,#070a10);border-right:1px solid var(--line);padding:22px 16px 30px}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 20px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.brand svg{width:46px;height:46px;flex:none;filter:drop-shadow(0 0 12px rgba(232,180,79,.35))}
+.brand .t1{font-family:Cinzel,serif;font-weight:800;font-size:17px;letter-spacing:.14em;color:var(--gold);line-height:1.1}
+.brand .t2{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-top:3px}
+.navh{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:18px 10px 8px;font-weight:700}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:11px;color:var(--text);text-decoration:none;font-size:14px;font-weight:500;position:relative}
+.nav a:hover{background:#0f1522}
+.nav a.on{background:linear-gradient(90deg,rgba(232,180,79,.14),rgba(232,180,79,.02));box-shadow:inset 2px 0 0 var(--gold)}
+.nav .num{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:700;background:#141b2a;border:1px solid var(--line2);color:var(--muted);flex:none}
+.nav a.done .num{background:var(--gold);color:#1a1204;border-color:var(--gold)}
+.nav .lbl{flex:1;min-width:0}
+.nav .lbl small{display:block;color:var(--dim);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav .mini{height:3px;background:#161d2c;border-radius:3px;margin-top:5px;overflow:hidden}
+.nav .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:3px;transition:width .4s}
+.nav .ic{width:26px;text-align:center;font-size:15px;flex:none}
+.sidefoot{margin-top:22px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel);font-size:12.5px;color:var(--muted)}
+.sidefoot b{color:var(--text)}
+/* MAIN */
+#main{flex:1;min-width:0;padding:34px 44px 90px;max-width:1180px}
+.topbar{display:none}
+.kicker{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-family:Cinzel,serif;font-size:34px;line-height:1.15;margin:8px 0 10px;letter-spacing:.02em}
+h2{font-size:20px;margin:0 0 12px;letter-spacing:-.01em}
+h3{font-size:16px;margin:0 0 8px}
+.lead{color:var(--muted);font-size:16px;max-width:760px}
+.card{background:linear-gradient(180deg,var(--panel),#0c111a);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px}
+.card+.card,.sec+.sec{margin-top:18px}
+.sec{margin-top:18px}
+.grid>.card,.grid>.card+.card{margin-top:0}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.muted{color:var(--muted)}.dim{color:var(--dim)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:#131a28;border:1px solid var(--line2);color:var(--muted)}
+.pill.gold{background:var(--goldglow);border-color:rgba(232,180,79,.4);color:var(--gold)}
+.pill.green{background:rgba(53,201,143,.12);border-color:rgba(53,201,143,.4);color:var(--green)}
+.pill.blue{background:var(--blueglow);border-color:rgba(61,123,255,.45);color:#8fb0ff}
+.pill.red{background:rgba(255,93,108,.12);border-color:rgba(255,93,108,.4);color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font-weight:700;font-size:14px;padding:11px 18px;border-radius:12px;background:linear-gradient(180deg,#f3c464,var(--gold2));color:#1a1204;text-decoration:none;box-shadow:0 6px 20px rgba(232,180,79,.2)}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:#121a29;color:var(--text);border:1px solid var(--line2);box-shadow:none}
+.btn.blue{background:linear-gradient(180deg,#5a8fff,var(--blue2));color:#fff;box-shadow:0 6px 20px rgba(61,123,255,.25)}
+.btn.sm{padding:7px 12px;font-size:12.5px;border-radius:10px}
+.btn.danger{background:#2a1017;color:#ff97a1;border:1px solid #4a1d27;box-shadow:none}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+/* HERO */
+.hero{position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(232,180,79,.25);padding:30px 32px;background:radial-gradient(600px 300px at 90% 0%,rgba(61,123,255,.22),transparent 60%),radial-gradient(500px 260px at 0% 100%,rgba(232,180,79,.14),transparent 60%),linear-gradient(135deg,#0e1422,#090d15)}
+.hero .skyline{position:absolute;right:-10px;bottom:-6px;width:340px;opacity:.13;pointer-events:none}
+.herorow{display:flex;gap:28px;align-items:center;flex-wrap:wrap;position:relative}
+.ring{width:150px;height:150px;flex:none;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .v b{font-size:34px;font-weight:800;display:block;line-height:1}
+.ring .v span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.stat{padding:16px 18px;border-radius:14px;background:var(--panel2);border:1px solid var(--line)}
+.stat .n{font-size:26px;font-weight:800;line-height:1.1}
+.stat .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:4px}
+/* JOURNEY */
+.journey{display:flex;gap:0;align-items:stretch;overflow-x:auto;padding:6px 2px 4px}
+.jn{flex:1;min-width:120px;text-decoration:none;color:var(--text);position:relative;padding:0 6px;text-align:center}
+.jn .dot{width:46px;height:46px;border-radius:14px;margin:0 auto 10px;display:grid;place-items:center;font-weight:800;background:#121a29;border:1px solid var(--line2);color:var(--muted);position:relative;z-index:1;transform:rotate(45deg)}
+.jn .dot span{transform:rotate(-45deg)}
+.jn.done .dot{background:linear-gradient(135deg,#f6cd72,var(--gold2));color:#1a1204;border-color:var(--gold);box-shadow:0 0 22px rgba(232,180,79,.35)}
+.jn.cur .dot{border-color:var(--blue);box-shadow:0 0 0 4px rgba(61,123,255,.18),0 0 22px rgba(61,123,255,.35);color:#fff}
+.jn:not(:last-child)::after{content:"";position:absolute;top:23px;left:calc(50% + 30px);right:calc(-50% + 30px);height:2px;background:var(--line2)}
+.jn.done:not(:last-child)::after{background:linear-gradient(90deg,var(--gold),var(--line2))}
+.jn .t{font-size:13px;font-weight:700}.jn .s{font-size:11.5px;color:var(--muted)}
+/* CHECKBOX */
+.ck{display:flex;gap:12px;align-items:flex-start;padding:11px 12px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s}
+.ck:hover{background:#111827;border-color:var(--line)}
+.ck input{position:absolute;opacity:0;pointer-events:none}
+.ck .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line2);flex:none;display:grid;place-items:center;margin-top:1px;transition:all .18s;background:#0b1019}
+.ck .box svg{width:13px;height:13px;opacity:0;transform:scale(.4);transition:all .2s}
+.ck input:checked+.box{background:linear-gradient(135deg,#f6cd72,var(--gold2));border-color:var(--gold);box-shadow:0 0 12px rgba(232,180,79,.35)}
+.ck input:checked+.box svg{opacity:1;transform:scale(1)}
+.ck input:checked~.txt{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(232,180,79,.5)}
+.ck input:focus-visible+.box{outline:2px solid var(--blue);outline-offset:2px}
+.cklist{display:flex;flex-direction:column;gap:2px}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px}
+/* PROGRESS BAR */
+.bar{height:8px;background:#141b2a;border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:8px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.bar.blue i{background:linear-gradient(90deg,var(--blue2),#7aa2ff)}
+.bar.green i{background:linear-gradient(90deg,#1f9f6d,var(--green))}
+/* MODULE HEADER */
+.mhead{border-radius:22px;padding:28px 30px;border:1px solid var(--line);background:radial-gradient(520px 240px at 100% 0%,rgba(61,123,255,.16),transparent 60%),linear-gradient(135deg,#0f1524,#0a0e17);position:relative;overflow:hidden}
+.mhead .big{position:absolute;right:26px;top:6px;font-family:Cinzel,serif;font-size:120px;font-weight:800;color:rgba(232,180,79,.07);line-height:1}
+.objective{margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(232,180,79,.07);border:1px solid rgba(232,180,79,.25);display:flex;gap:12px;align-items:flex-start}
+.objective b{color:var(--gold)}
+.mprog{display:flex;align-items:center;gap:14px;margin-top:18px}
+.mprog .bar{flex:1}
+/* SECTION TITLE */
+.st{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.st .ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--goldglow);border:1px solid rgba(232,180,79,.3);font-size:16px;flex:none}
+.st h2{margin:0}
+.st .sub{color:var(--muted);font-size:13px}
+details.acc{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--panel),#0c111a);margin-top:18px;overflow:hidden}
+details.acc>summary{list-style:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;gap:12px}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary .chev{margin-left:auto;transition:transform .2s;color:var(--muted)}
+details.acc[open]>summary .chev{transform:rotate(180deg)}
+details.acc>summary h2{margin:0;font-size:18px}
+details.acc .body{padding:0 22px 22px}
+ul.clean{margin:0;padding:0;list-style:none}
+ul.clean li{padding:6px 0 6px 22px;position:relative}
+ul.clean li::before{content:"";position:absolute;left:4px;top:14px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);border-radius:1px}
+ul.clean.red li::before{background:var(--red)}
+ul.clean.blue li::before{background:var(--blue)}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;padding:10px 0 10px 46px;position:relative;border-bottom:1px dashed var(--line)}
+ol.steps li:last-child{border-bottom:0}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:30px;height:30px;border-radius:9px;background:#131b2b;border:1px solid var(--line2);display:grid;place-items:center;font-weight:800;font-size:13px;color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 12px;border-radius:10px;background:#111827;border:1px solid var(--line2);font-size:13px}
+.quote{border-left:3px solid var(--gold);padding:14px 18px;background:linear-gradient(90deg,rgba(232,180,79,.08),transparent);border-radius:0 14px 14px 0;font-size:16.5px;font-weight:500}
+.quote small{display:block;color:var(--muted);font-size:12px;margin-top:6px;font-weight:500}
+.path{display:flex;flex-wrap:wrap;gap:0;align-items:center}
+.path .p{padding:10px 14px;border-radius:12px;background:#111827;border:1px solid var(--line2);font-size:13.5px;font-weight:600}
+.path .ar{color:var(--gold);padding:0 8px;font-weight:800}
+.sub-card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:18px}
+.sub-card h3{display:flex;align-items:center;gap:8px}
+.tagline{font-size:12.5px;color:var(--muted);margin:-2px 0 10px}
+/* FORMS */
+label.f{display:block;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;margin-bottom:6px}
+input.i,select.i,textarea.i{width:100%;background:#0a0f18;border:1px solid var(--line2);color:var(--text);border-radius:11px;padding:10px 12px;font:inherit;font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s}
+input.i:focus,select.i:focus,textarea.i:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,180,79,.15)}
+textarea.i{min-height:74px;resize:vertical}
+.q{margin-bottom:14px}
+.q .ql{font-size:14px;font-weight:600;margin-bottom:6px;display:flex;gap:8px}
+.q .ql .qn{color:var(--gold);font-weight:800;min-width:22px}
+.saved{font-size:11.5px;color:var(--green);opacity:0;transition:opacity .3s}
+.saved.on{opacity:1}
+.radio{display:grid;gap:10px}
+.radio label{display:flex;gap:12px;padding:14px;border-radius:12px;border:1px solid var(--line2);background:#0c121c;cursor:pointer}
+.radio input{accent-color:var(--gold);margin-top:3px}
+.radio label:has(input:checked){border-color:var(--gold);background:rgba(232,180,79,.08)}
+/* SCRIPT */
+.script{position:relative;background:#0a0f18;border:1px solid var(--line2);border-radius:14px;padding:16px 18px;font-size:14.5px;white-space:pre-wrap}
+.script .fill{color:var(--gold);font-weight:700}
+.script .cp{position:absolute;top:10px;right:10px}
+/* GAUGE */
+.gauge{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:#0b111b;border:1px solid var(--line);margin-top:12px}
+.gauge .lab{font-weight:700;min-width:190px}
+/* TABLE-ish */
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{display:grid;gap:10px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
+.stars{display:inline-flex;gap:2px}
+.stars button{background:none;border:0;padding:0 1px;cursor:pointer;font-size:18px;color:#39445c}
+.stars button.on{color:var(--gold)}
+.empty{padding:26px;text-align:center;color:var(--muted);border:1px dashed var(--line2);border-radius:14px}
+/* DAILY */
+.task{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:var(--panel2);border:1px solid var(--line)}
+.task.met{border-color:rgba(232,180,79,.45);background:linear-gradient(90deg,rgba(232,180,79,.09),var(--panel2))}
+.task .tl{flex:1;font-weight:600}
+.task .tl small{display:block;color:var(--muted);font-weight:500;font-size:12px}
+.ctr{display:flex;align-items:center;gap:6px}
+.ctr button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line2);background:#121a29;color:var(--text);font-size:18px;font-weight:700;cursor:pointer}
+.ctr b{min-width:52px;text-align:center;font-size:16px}
+.heat{display:flex;gap:6px;flex-wrap:wrap}
+.heat div{width:30px;height:30px;border-radius:8px;background:#121928;border:1px solid var(--line);display:grid;place-items:center;font-size:10.5px;color:var(--dim)}
+.heat .h1{background:rgba(232,180,79,.18);color:var(--gold)}
+.heat .h2{background:rgba(232,180,79,.4);color:#1a1204}
+.heat .h3{background:linear-gradient(135deg,#f6cd72,var(--gold2));color:#1a1204;font-weight:800}
+.heat .td{outline:2px solid var(--blue);outline-offset:1px}
+/* LADDER */
+.ladder{display:flex;flex-direction:column-reverse;gap:10px}
+.rung{display:flex;gap:16px;align-items:flex-start;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;transition:all .2s}
+.rung:hover{border-color:var(--line2)}
+.rung .rn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:800;background:#141c2c;border:1px solid var(--line2);color:var(--muted);flex:none}
+.rung.past .rn{background:rgba(232,180,79,.2);color:var(--gold);border-color:rgba(232,180,79,.4)}
+.rung.here{border-color:var(--gold);background:linear-gradient(90deg,rgba(232,180,79,.12),var(--panel2));box-shadow:0 0 30px rgba(232,180,79,.08)}
+.rung.here .rn{background:linear-gradient(135deg,#f6cd72,var(--gold2));color:#1a1204;border-color:var(--gold)}
+.rung .rb{flex:1}
+.rung .rd{display:none;margin-top:10px}
+.rung.here .rd{display:block}
+/* MILESTONES */
+.ms{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:18px 12px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);cursor:pointer}
+.ms .mi{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:#121a29;border:1px solid var(--line2);filter:grayscale(1);opacity:.55}
+.ms.on{border-color:rgba(232,180,79,.45)}
+.ms.on .mi{filter:none;opacity:1;background:radial-gradient(circle,rgba(232,180,79,.35),rgba(232,180,79,.05));border-color:var(--gold);box-shadow:0 0 24px rgba(232,180,79,.3)}
+.ms b{font-size:13.5px}.ms small{font-size:11.5px;color:var(--muted)}
+/* MODAL / TOAST */
+#modal{position:fixed;inset:0;background:rgba(3,5,9,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+#modal.on{display:flex}
+#modal .mbox{width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:22px;border:1px solid rgba(232,180,79,.3);background:linear-gradient(180deg,#0f1522,#0a0e17);padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(30px);opacity:0;transition:all .3s;background:#111a2b;border:1px solid rgba(232,180,79,.45);color:var(--text);padding:12px 18px;border-radius:12px;font-weight:600;z-index:60;box-shadow:0 12px 40px rgba(0,0,0,.5);pointer-events:none}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:70}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--dim);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.flex{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt24{margin-top:24px}
+.result{border-radius:16px;padding:18px;background:#0b111b;border:1px solid var(--line)}
+.result .big{font-family:Cinzel,serif;font-size:24px;font-weight:800;color:var(--gold)}
+.kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line)}
+.kv:last-child{border-bottom:0}
+.warn{padding:10px 12px;border-radius:10px;background:rgba(255,181,71,.1);border:1px solid rgba(255,181,71,.35);color:#ffd08a;font-size:13px;margin-top:8px}
+.ok{padding:10px 12px;border-radius:10px;background:rgba(53,201,143,.1);border:1px solid rgba(53,201,143,.35);color:#8ff0c6;font-size:13px;margin-top:8px}
+.menu-btn{background:#121a29;border:1px solid var(--line2);color:var(--text);border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+@media (max-width:980px){
+  #side{position:fixed;left:0;top:0;z-index:40;transform:translateX(-100%);transition:transform .25s;box-shadow:20px 0 60px rgba(0,0,0,.6)}
+  #side.open{transform:none}
+  #main{padding:18px 16px 80px}
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g2,.cols2{grid-template-columns:1fr}
+  h1{font-size:26px}
+  .hero{padding:22px}
+  .mhead .big{font-size:80px}
+  .gauge{flex-wrap:wrap}.gauge .lab{min-width:0}
+}
+@media (max-width:560px){.g3,.g4{grid-template-columns:1fr 1fr}.ring{width:120px;height:120px}}
+@media print{#side,.topbar,.btn,.menu-btn{display:none!important}#main{padding:0}body{background:#fff;color:#111}.card,.mhead,.hero,details.acc{background:#fff!important;color:#111;border-color:#ccc}}
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="side"></aside>
+  <main id="main"></main>
+</div>
+<div id="modal"><div class="mbox" id="mbox"></div></div>
+<div id="toast"></div>
+<canvas id="confetti"></canvas>
+
+<script>
+/* ===================== BRAND ===================== */
+const LOGO = `<svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3a3"/><stop offset="1" stop-color="#c38a2a"/></linearGradient><linearGradient id="lb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6d9bff"/><stop offset="1" stop-color="#2a5bd6"/></linearGradient></defs><path d="M24 1.5 46.5 24 24 46.5 1.5 24Z" fill="#0a0f1c" stroke="url(#lb)" stroke-width="2"/><path d="M24 7.5v4.5" stroke="url(#lg)" stroke-width="1.4"/><path d="M22.6 12h2.8v3.2h-2.8zM21.2 15.2h5.6v4h-5.6zM19.6 19.2h8.8v5h-8.8zM18.2 24.2h11.6v14.6H18.2z" fill="url(#lg)"/><path d="M20.6 26.5h1.4M23.3 26.5h1.4M26 26.5h1.4M20.6 29.5h1.4M23.3 29.5h1.4M26 29.5h1.4M20.6 32.5h1.4M23.3 32.5h1.4M26 32.5h1.4M20.6 35.5h1.4M26 35.5h1.4" stroke="#0a0f1c" stroke-width="1.3"/></svg>`;
+const SKYLINE = `<svg class="skyline" viewBox="0 0 340 170" fill="#e8b44f"><rect x="0" y="100" width="30" height="70"/><rect x="34" y="80" width="26" height="90"/><rect x="64" y="120" width="22" height="50"/><rect x="90" y="60" width="30" height="110"/><rect x="124" y="95" width="24" height="75"/><path d="M168 10v22h-4v14h-6v18h-8v106h44V64h-8V46h-6V32h-4V10z"/><rect x="200" y="85" width="28" height="85"/><rect x="232" y="110" width="22" height="60"/><rect x="258" y="70" width="32" height="100"/><rect x="294" y="105" width="22" height="65"/><rect x="320" y="90" width="20" height="80"/></svg>`;
+const TICK = `<svg viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="#1a1204" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+/* ===================== CONTENT (from Cody Melton's 5-Part Roadmap + Empire Business Build offer) ===================== */
+const MODULES = [
+{ id:"p0", num:"0", short:"Start Here", title:"Your First Week", kicker:"Before your first mentor call", sub:"Foundation, course, and setup",
+  objective:"Get your foundation in place so your first mentor call is spent on strategy, not setup.",
+  sections:[
+    {t:"path", h:"How this program works", ico:"🧭", intro:"The course gives you the framework. Your mentor helps you apply it correctly: better decisions, fewer expensive mistakes, and a clear focus based on your real situation, time, budget, and goals.",
+      steps:["Start lean","Get your first cleaner","Get your first customer","Prove the model","Use profit to improve systems","Buy back your time"],
+      outro:"Most cost-effective, then more time-effective, then more automated. The goal is not a complicated business on day one. The goal is traction."},
+    {t:"checks", id:"setup", h:"Your first week checklist", ico:"✅", items:[
+      "Log in to the Empire Network platform and explore your Business Dashboard",
+      "Your business foundation gets set up with the Empire team (usually within 2 to 4 days)",
+      "Start the video course (most students finish it in under a week)",
+      "File your LLC",
+      "Open your business bank account",
+      "Join the biweekly group coaching calls",
+      "Book your first mentor call (within 7 days of joining)",
+      "Answer the Call 1 prep questions so your mentor knows where you are"
+    ]},
+    {t:"cards", h:"What you can expect from us", ico:"🤝", items:[
+      {h:"6 one-on-one calls", b:"Your mentor runs a business in this industry right now. Every call has an agenda and leaves you with clear next steps."},
+      {h:"Biweekly group calls", b:"A core lesson from a mentor in your industry, with 15 minutes of Q&A at the end."},
+      {h:"This roadmap", b:"Every call, checklist, script, and tracker lives here. Your progress saves as you go."}
+    ]}
+  ]},
+{ id:"c1", num:"1", short:"Call 1", title:"Diagnosis, Your Role, and Your First Moves", kicker:"Mentor Call 1", sub:"Offer, first cleaner, first customer",
+  objective:"Leave with clarity: where you are, what role you play right now, what to charge, and exactly how to go after your first cleaner and first customer.",
+  sections:[
+    {t:"questions", id:"diag", h:"Before the call: answer honestly", ico:"📝", sub:"Your mentor uses this to pick the right plan for you. There are no wrong answers.", items:[
+      "Are you currently working full-time?",
+      "How many hours per week can you realistically put into this?",
+      "Do you have money to invest, or are you starting very lean?",
+      "Are you comfortable talking to customers?",
+      "Are you comfortable posting in local Facebook groups?",
+      "Are you comfortable calling or messaging cleaners?",
+      "Do you already have a service area picked?",
+      "Do you already have a Google Business Profile started?",
+      "Do you already have any cleaner leads?",
+      "Do you already have any customer leads?",
+      "What is your goal for the next 30 days?",
+      "Are you trying to replace income, build side income, or eventually scale?"
+    ]},
+    {t:"radio", id:"plan", h:"Your plan type (decide with your mentor)", ico:"🎯", options:[
+      ["Lean manual plan","Start with almost no spend. You do the reps yourself and learn the business from the inside."],
+      ["Slightly more aggressive plan","Some budget and time. Move a bit faster on tools and outreach."],
+      ["Faster reinvestment plan","More capital and hours. Reinvest early profit into systems sooner."]
+    ]},
+    {t:"role", h:"Your place in the business right now", ico:"👑", intro:"Early on you may do more things by hand. That does not mean you are building the wrong business. It means you are earning the right to automate later.",
+      items:["Respond to leads","Post in Facebook groups","Message cleaners","Screen cleaners","Quote customers","Follow up with leads","Confirm jobs","Handle customer questions","Track money manually","Ask for reviews"],
+      quote:"Doing it manually at first is not the same as staying trapped forever. Those repeated tasks later become scripts, templates, SOPs, VA tasks, or automation."},
+    {t:"rubric", h:"The offer rubric: what to charge for", ico:"🧽"},
+    {t:"list", h:"Pricing principles", ico:"⚖️", style:"red", items:[
+      "Do not sell a deep clean as a standard clean","Do not guess without asking questions","Do not be the cheapest by default","Do not take jobs that are too far away unless priced correctly","Do not promise what the cleaner cannot realistically do","Do not discount out of fear","Always leave room for cleaner pay and profit"],
+      quote:"Price the job so the cleaner is paid fairly, the customer expectation is realistic, and the business still keeps margin."},
+    {t:"cleaner1", h:"How to hire your first cleaner", ico:"🧹"},
+    {t:"customer1", h:"How to get your first customer", ico:"🏠"},
+    {t:"outcomes", items:["I understand my role in the business right now","I have a clear service area","I have a simple offer and pricing rubric","I have a first cleaner recruiting plan","I have a first customer acquisition plan","I have my 7-day action plan (Daily Reps tracker)"]}
+  ]},
+{ id:"c2", num:"2", short:"Call 2", title:"Pricing, Sales, and Your First Booking", kicker:"Mentor Call 2", sub:"Turn conversations into booked jobs",
+  objective:"Turn conversations into booked jobs without underpricing, overpromising, or confusing the customer.",
+  sections:[
+    {t:"checks", id:"review", h:"Since Call 1, I have...", ico:"🔁", sub:"Tick what you did. Bring the rest to the call, that is what it is for.", items:["Contacted cleaners","Gotten at least one cleaner response","Posted in Facebook groups","Gotten customer interest","Quoted someone"], noCount:true},
+    {t:"questions", id:"honest", h:"Be honest with your mentor", ico:"💬", items:["Where did you feel unsure about pricing?","What objections did you run into?","Where did fear slow you down or stop you from taking action?"]},
+    {t:"four", h:"A booked job is not automatically a win", ico:"🏆"},
+    {t:"list", h:"The sales flow", ico:"📞", style:"steps", items:["Respond quickly","Ask qualifying questions","Identify the service type","Quote confidently","Explain what is included","Offer recurring if appropriate","Confirm date and time window","Confirm access details","Confirm payment method","Send cleaner handoff notes"]},
+    {t:"list", h:"Qualification questions to ask every lead", ico:"❓", copy:true, items:["How many bedrooms and bathrooms?","Approximate square footage?","Is the home empty or occupied?","When was the last professional cleaning?","Is this maintenance cleaning or does it need a deeper reset?","Any pets?","Any heavy buildup, dust, grease, soap scum, or pet hair?","Do you need inside fridge, oven, or cabinets?","Are baseboards important?","What day are you hoping for?","Are you looking for one-time or recurring service?"]},
+    {t:"chips", h:"Classify every job", ico:"🗂️", items:["Standard clean","Deep clean","Move-in / move-out clean","Add-on-heavy job","Job to refuse","Job that needs photos before pricing"], link:["pricer","Open the Job Pricer"]},
+    {t:"fields", id:"guard", h:"My pricing guardrails", ico:"🛡️", sub:"Set these with your mentor on this call. The Job Pricer uses your minimum price.", items:[
+      ["minPrice","Minimum job price ($)","e.g. set with your mentor","number"],["cleanerPct","Cleaner pay percentage","e.g. 60 to 70%"],["margin","Company margin target","e.g. 30 to 40%"],["travel","Travel rule","How far will you go, and what do you charge beyond it?"],["addons","Add-on pricing","Fridge, oven, cabinets, windows..."],["photos","When I ask for photos","e.g. heavy buildup, unclear condition"],["walk","When I walk away","e.g. below minimum, too far, unrealistic scope"],["urgency","When I charge more for urgency","e.g. same-day or next-day requests"]]},
+    {t:"checks", id:"before", h:"First booking: before the job", ico:"📋", sub:"Make the first job boring and controlled.", items:["Confirm customer details","Confirm cleaner","Confirm arrival window","Send job notes","Confirm scope","Confirm payment","Have a backup plan if possible"]},
+    {t:"checks", id:"after", h:"First booking: after the job", ico:"⭐", items:["Follow up with the customer","Ask for feedback","Resolve any issues quickly","Ask for a review if they are happy","Offer recurring service"]},
+    {t:"outcomes", items:["A cleaner sales script","A stronger pricing rubric","A follow-up message","A first booking checklist","A customer confirmation message","A cleaner handoff template","A review request message"]}
+  ]},
+{ id:"c3", num:"3", short:"Call 3", title:"Cleaner Pipeline and Fulfillment System", kicker:"Mentor Call 3", sub:"Cleaners are your inventory",
+  objective:"Understand that cleaner supply is the real inventory of the business, and build a pipeline before you need it.",
+  sections:[
+    {t:"quote", text:"Without cleaners, there is no business. With bad cleaners, there is a refund machine. With only one cleaner, there is risk."},
+    {t:"text", h:"Recruit before desperation", ico:"⏳", html:"<p>Do not wait until you have a job tomorrow to look for cleaners. Early on you may not have money for a VA, so you build the first cleaner pipeline yourself. Later, cleaner recruiting becomes one of the first things a VA helps with.</p>", link:["cleaners","Open my Cleaner Pipeline"]},
+    {t:"cards", h:"Where to find cleaners", ico:"🔎", items:[
+      {h:"Low-cost sources first", list:["Facebook groups","Craigslist","Local posts","Referral posts","Cleaning groups","Community groups","Direct outreach"]},
+      {h:"Paid sources later, if needed", list:["Indeed","Sponsored job posts","Paid recruiting help"]}
+    ]},
+    {t:"list", h:"Vetting standards", ico:"🔬", cols:true, items:["Clear communication","Reliable transportation","Experience","Availability","Professionalism","Photos of past work","Ability to follow instructions","Calm attitude","Good response time"]},
+    {t:"pay", h:"Cleaner pay", ico:"💵"},
+    {t:"text", h:"Supplies", ico:"🧴", html:"<p><b>Recommended early model:</b> the cleaner provides basic supplies when possible. This keeps the model lighter and easier to scale.</p><p class='muted'>If you provide supplies, you gain more control but add logistics and cost.</p>"},
+    {t:"handoff", h:"Job handoff: the cleaner never walks in blind", ico:"📦"},
+    {t:"questions", id:"issues", h:"My plan if...", ico:"🚨", sub:"Write your plan now so a bad day is not a panic day. Review it with your mentor.", items:["The cleaner is late","The cleaner no-shows","The customer complains","The job takes longer than expected","The home is worse than described","The customer asks for extra work","The cleaner wants more money","The customer requests a refund","The customer wants a reclean"]},
+    {t:"outcomes", items:["Cleaner recruiting post","Cleaner screening questions","Cleaner tracker","Cleaner onboarding checklist","Job handoff checklist","Day-of-job checklist","Issue resolution process"]}
+  ]},
+{ id:"c4", num:"4", short:"Call 4", title:"Low-Cost Lead Generation and Follow-Up", kicker:"Mentor Call 4", sub:"Daily execution beats ad spend",
+  objective:"Get customers using cost-effective action before expensive tools or ads.",
+  sections:[
+    {t:"quote", text:"Start with the most cost-effective methods first. Then reinvest into more time-effective systems once the business has profit.", by:"You do not need paid ads yet. You need daily execution."},
+    {t:"cards", h:"Your best early lead sources", ico:"📣", items:[
+      {h:"Facebook Groups", list:["Join local community groups","Search for posts looking for cleaners","Comment helpfully","DM professionally","Post value-based cleaning offers","Avoid sounding spammy","Follow group rules"]},
+      {h:"Marketplace and Craigslist", list:["Post simple service listings","Use clear headlines","Mention reliability and professionalism","Keep the offer local","Refresh posts consistently"]},
+      {h:"Personal Network", list:["Announce the business","Ask for referrals","Offer a simple launch special","Ask friends and family to share"]},
+      {h:"Direct Outreach", list:["Realtors","Airbnb hosts","Property managers","Small offices","Move-out related businesses"]}
+    ]},
+    {t:"script", id:"outreach", h:"Your direct outreach message", ico:"✉️"},
+    {t:"followup", h:"The follow-up system", ico:"🔔"},
+    {t:"gauge", id:"ghl", h:"Is it time for GHL?", ico:"⚙️", sub:"GHL should wait until you have enough lead flow and bookings to justify it. Tick what is true today.", items:["Leads are coming in consistently","Follow-up is getting missed","There are multiple lead sources","I need automation","A VA is helping manage the pipeline","Manual tracking is getting messy"], ready:4, yes:"Worth discussing GHL with your mentor.", no:"Stay on cheap tools for now. Notes, Sheets, and BookingKoala are enough."},
+    {t:"gauge", id:"ads", h:"Paid ads readiness", ico:"🚀", sub:"Paid ads amplify whatever already exists. If the system is weak, ads amplify chaos.", items:["I have a proven offer","I have cleaner coverage","I have a basic close rate","I have a follow-up process","I have money to test","I can answer leads quickly","I have a clear service area"], ready:7, yes:"All 7 in place. Bring a test plan to your mentor.", no:"Not yet. Keep building the missing pieces first."},
+    {t:"outcomes", items:["Daily lead generation checklist","Facebook group plan","Simple direct outreach message","Manual lead tracker","Follow-up templates","Review request template","Decision rule for when to consider GHL or paid ads"]}
+  ]},
+{ id:"c5", num:"5", short:"Call 5", title:"Profit, Reinvestment, and the Path to Hands-Off", kicker:"Mentor Call 5", sub:"Buy back your time, step by step",
+  objective:"Move from doing everything manually to gradually buying back your time, the real way.",
+  sections:[
+    {t:"quote", text:"Hands-off is not step one. Hands-off is earned through proof, profit, and process."},
+    {t:"ladder", h:"The reinvestment ladder: where are you?", ico:"🪜"},
+    {t:"checks", id:"va", h:"Good first VA tasks (tick the ones you could hand off)", ico:"🧑‍💻", noCount:true, cols:true, items:["Missed call follow-up","Quote follow-up","Lead tracker updates","Customer reminders","Review requests","Cleaner recruiting posts","Applicant follow-up","Basic screening","Booking confirmations","End-of-day summaries"]},
+    {t:"list", h:"Keep these in your hands", ico:"🔐", style:"blue", cols:true, sub:"Do not delegate high-judgment tasks too early.", items:["Pricing strategy","Cleaner approval","Complaint decisions","Refund and credit decisions","Market decisions","Paid ad budget","Margin review"]},
+    {t:"metrics", h:"The numbers you manage by", ico:"📊"},
+    {t:"ninety", h:"Your 90-day progression", ico:"🗓️"},
+    {t:"outcomes", items:["Profit tracker","Reinvestment plan","Delegation ladder","First VA task list, if ready","Automation timing guide","Weekly review checklist","90-day growth plan","Clear understanding of how to move from manual to remote-managed"]},
+    {t:"philo"}
+  ]}
+];
+
+const LADDER = [
+ {h:"Manual and Cheap", goal:"Get your first cleaner, first customer, first review, and first profit.", you:["Lead follow-up","Cleaner recruiting","Customer quoting","Scheduling","Review requests","Basic tracking"], tools:["Google Voice","Stripe","Google Sheets","BookingKoala or basic scheduling","Notes app","Free Facebook groups"]},
+ {h:"Organized and Repeatable", goal:"Make the business trainable.", you:["Scripts","Templates","Checklists","Cleaner tracker","Lead tracker","Pricing rubric","Handoff process","Review process"]},
+ {h:"First Delegation", goal:"Hand off repetitive work once there is enough activity. Keep high-judgment decisions.", you:["Missed call follow-up","Quote follow-up","Review requests","Booking confirmations","Applicant follow-up"]},
+ {h:"Automation", goal:"Only automate what has already been proven manually. If you do not understand the process by hand, you will not know if automation is working.", you:["GHL","Missed call text-back","Automated follow-up","Review request sequences","Booking and cleaner reminders","Pipeline stages","Lead nurture"]},
+ {h:"Owner as Manager", goal:"Manage through numbers. Ask weekly: why did the business need me this week?", you:["Daily reports","Weekly reviews","KPIs","Cleaner scorecards","Sales tracking","Margin tracking","Review tracking","Escalation rules"]}
+];
+const NINETY = [
+ {h:"Days 1 to 30", g:"Prove the model", id:"d30", items:["First cleaner","First customer","First review","Simple pricing","Manual lead generation","Basic tracking","No unnecessary software","No overbuilding"]},
+ {h:"Days 31 to 60", g:"Create repeatability", id:"d60", items:["Better scripts","Better cleaner pipeline","Cleaner backup options","Review process","Follow-up process","Basic recurring offer","Improve close rate","Track margin"]},
+ {h:"Days 61 to 90", g:"Start buying back time", id:"d90", items:["Delegate repetitive work if profitable","Consider a VA if activity justifies it","Consider GHL if follow-up volume justifies it","Improve automation","Build stronger systems","Increase recurring clients","Tighten cleaner coverage","Review weekly numbers"]}
+];
+const DAILY = [
+ {id:"post",l:"Make 1 Facebook post",s:"Local groups, value first",t:1},
+ {id:"comment",l:"Comment on local cleaning-related posts",s:"Be helpful, not salesy",t:5},
+ {id:"cleaners",l:"Message potential cleaners",s:"Build supply before you need it",t:5},
+ {id:"sources",l:"Message potential customer sources",s:"Realtors, Airbnb hosts, property managers",t:5},
+ {id:"follow",l:"Follow up with every inquiry",s:"Same day, next day, final",t:1,bool:true},
+ {id:"review",l:"Ask every happy customer for a review",s:"Tick when done (or nobody to ask yet)",t:1,bool:true}
+];
+const SCRIPTS = {
+ cleaner:"I run a local cleaning company and I'm looking for reliable independent cleaners for residential cleaning jobs. Must have experience, transportation, basic supplies, good communication, and availability for jobs in [area]. If interested, send your experience, availability, service area, and a few photos of past work if available.",
+ outreach:"Hey, I run a local cleaning service in [city]. We help with standard cleans, deep cleans, and move-in/move-out cleanings. If you ever need a reliable cleaner for a listing, rental, or turnover, I'd be happy to help.",
+ followup:"Hey [Name], just checking back in. I know life gets busy. Did you still need help with the cleaning at [property/home]?"
+};
+const HANDOFF = ["Customer name","Address","Phone number","Service type","Price","Square footage","Bedrooms / bathrooms","Pets","Home condition","Priority areas","Add-ons","Access instructions","Parking notes","Arrival window","Photos if available","Any red flags"];
+
+/* ===================== STATE ===================== */
+const KEY="empire_roadmap_v1";
+const today=(d=new Date())=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const def=()=>({profile:{name:"",area:"",start:today(),hours:"",goal:"",mentor:"Cody Melton",book:"",community:""},checks:{},answers:{},daily:{},cleaners:[],leads:[],weeks:[],ladder:0,milestones:{},pricer:{cleanerPct:65},onboarded:false});
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(!s)return def();const d=def();return Object.assign(d,s,{profile:Object.assign(d.profile,s.profile||{}),pricer:Object.assign(d.pricer,s.pricer||{})})}catch(e){return def()}}
+let S=load();
+let saveT;function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+function saveSoon(){clearTimeout(saveT);saveT=setTimeout(()=>{save();document.querySelectorAll(".saved").forEach(e=>{e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1200)})},350)}
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+
+/* progress keys */
+function moduleKeys(m){const k=[];m.sections.forEach(s=>{if((s.t==="checks"&&!s.noCount)||s.t==="outcomes"){const sid=s.t==="outcomes"?"out":s.id;s.items.forEach((_,i)=>k.push(m.id+"."+sid+"."+i))}});return k}
+function modulePct(m){const k=moduleKeys(m);if(!k.length)return 0;return Math.round(k.filter(x=>S.checks[x]).length/k.length*100)}
+function outcomesDone(m){const s=m.sections.find(x=>x.t==="outcomes");if(!s)return modulePct(m)===100;return s.items.every((_,i)=>S.checks[m.id+".out."+i])}
+function overallPct(){let a=0,b=0;MODULES.forEach(m=>{const k=moduleKeys(m);a+=k.filter(x=>S.checks[x]).length;b+=k.length});return b?Math.round(a/b*100):0}
+function labelFor(key){const [mid,sid,i]=key.split(".");const m=MODULES.find(x=>x.id===mid);const s=m.sections.find(x=>(x.t==="outcomes"?"out":x.id)===sid);return s?s.items[+i]:""}
+function nextStep(){for(const m of MODULES){const k=moduleKeys(m).find(x=>!S.checks[x]);if(k)return{m,text:labelFor(k),key:k}}return null}
+
+/* ===================== ROUTER ===================== */
+const NAV_TOOLS=[["dashboard","Dashboard","🏛️"],["daily","Daily Reps","🔥"],["pricer","Job Pricer","🧮"],["cleaners","Cleaner Pipeline","🧹"],["leads","Lead Tracker","📇"],["scorecard","Weekly Scorecard","📈"],["scripts","Scripts Library","📜"],["settings","Settings","⚙️"]];
+function route(){return (location.hash.replace(/^#\/?/,"")||"dashboard")}
+function renderSide(){
+  const r=route();
+  let h=`<div class="brand">${LOGO}<div><div class="t1">EMPIRE</div><div class="t2">Network</div></div></div>`;
+  h+=`<nav class="nav"><a href="#/dashboard" class="${r==="dashboard"?"on":""}"><span class="ic">🏛️</span><span class="lbl">Dashboard</span></a></nav>`;
+  h+=`<div class="navh">Your Roadmap</div><nav class="nav">`;
+  MODULES.forEach(m=>{const p=modulePct(m);h+=`<a href="#/${m.id}" class="${r===m.id?"on":""} ${outcomesDone(m)&&p>0?"done":""}"><span class="num">${outcomesDone(m)&&p>0?"✓":m.num}</span><span class="lbl">${m.short}<small>${esc(m.sub)}</small><div class="mini"><i data-mini="${m.id}" style="width:${p}%"></i></div></span></a>`});
+  h+=`</nav><div class="navh">Your Toolkit</div><nav class="nav">`;
+  NAV_TOOLS.slice(1).forEach(([id,l,ic])=>{h+=`<a href="#/${id}" class="${r===id?"on":""}"><span class="ic">${ic}</span><span class="lbl">${l}</span></a>`});
+  h+=`</nav><div class="sidefoot">Your mentor<br><b>${esc(S.profile.mentor||"Your mentor")}</b><div class="bar mt8"><i data-overall style="width:${overallPct()}%"></i></div><div class="mt8"><b data-overall-t>${overallPct()}%</b> of your roadmap complete</div></div>`;
+  document.getElementById("side").innerHTML=h;
+}
+function render(keepScroll){
+  const y=window.scrollY;const r=route();renderSide();
+  const main=document.getElementById("main");
+  const top=`<div class="topbar"><button class="menu-btn" onclick="document.getElementById('side').classList.toggle('open')">☰ Menu</button><span class="serif" style="color:var(--gold);font-weight:800">EMPIRE</span></div>`;
+  let body="";
+  const m=MODULES.find(x=>x.id===r);
+  if(m) body=viewModule(m);
+  else body=({dashboard:viewDash,daily:viewDaily,pricer:viewPricer,cleaners:viewCleaners,leads:viewLeads,scorecard:viewScore,scripts:viewScripts,settings:viewSettings}[r]||viewDash)();
+  main.innerHTML=top+body+footer();
+  document.getElementById("side").classList.remove("open");
+  if(keepScroll)window.scrollTo(0,y);else window.scrollTo(0,0);
+  if(r==="pricer")calcPricer();
+}
+function footer(){return `<div class="foot"><span>Empire Network · Remote Cleaning Mentorship Roadmap</span><span>Targets and timelines are goals, not guarantees. Results depend on your effort and your market.</span></div>`}
+window.addEventListener("hashchange",()=>render());
+
+/* ===================== COMPONENTS ===================== */
+const ck=(key,text)=>`<label class="ck"><input type="checkbox" data-k="${key}" ${S.checks[key]?"checked":""}><span class="box">${TICK}</span><span class="txt">${esc(text)}</span></label>`;
+const secTitle=(ico,h,sub)=>`<div class="st">${ico?`<div class="ico">${ico}</div>`:""}<div><h2>${esc(h)}</h2>${sub?`<div class="sub">${esc(sub)}</div>`:""}</div></div>`;
+const toolLink=(l)=>l?`<div class="mt16"><a class="btn ghost sm" href="#/${l[0]}">${esc(l[1])} →</a></div>`:"";
+function fillScript(t){const a=S.profile.area;return esc(t).replace(/\[(area|city)\]/g,(m)=>a?`<span class="fill">${esc(a)}</span>`:`<span class="fill">${m}</span>`).replace(/\[(Name|property\/home)\]/g,m=>`<span class="fill">${m}</span>`)}
+function plainScript(t){const a=S.profile.area;return a?t.replace(/\[(area|city)\]/g,a):t}
+const scriptBox=(id,t)=>`<div class="script" id="scr-${id}"><button class="btn ghost sm cp" data-copy="${id}">Copy</button><div style="padding-right:70px">${fillScript(t)}</div></div>`;
+
+function viewModule(m){
+  const idx=MODULES.indexOf(m);const p=modulePct(m);
+  let h=`<div class="mhead"><div class="big">${m.num}</div><div class="kicker">${esc(m.kicker)}</div><h1>${esc(m.title)}</h1>
+   <div class="objective"><span style="font-size:18px">🎯</span><div><b>By the end of this ${m.id==="p0"?"week":"call"}:</b> ${esc(m.objective)}</div></div>
+   <div class="mprog"><div class="bar"><i data-mprog="${m.id}" style="width:${p}%"></i></div><b data-mprog-t="${m.id}">${p}%</b></div>
+   ${m.id!=="p0"?`<div class="flex mt16">${S.profile.book?`<a class="btn blue sm" href="${esc(S.profile.book)}" target="_blank" rel="noopener">📅 Book this call with ${esc(S.profile.mentor||"your mentor")}</a>`:`<span class="pill">📅 Your coordinator will send your booking link</span>`}<button class="btn ghost sm" onclick="window.print()">🖨️ Print</button></div>`:""}
+  </div>`;
+  m.sections.forEach(s=>{h+=renderSection(m,s)});
+  if(m.id!=="p0"){h+=`<div class="card sec">${secTitle("🗒️","Your call notes","Saved automatically on this device.")}
+    <div class="grid g2"><div><label class="f">What I learned on this call</label><textarea class="i" style="min-height:120px" data-a="${m.id}.notes">${esc(S.answers[m.id+".notes"])}</textarea></div>
+    <div><label class="f">Questions for my next call</label><textarea class="i" style="min-height:120px" data-a="${m.id}.qs">${esc(S.answers[m.id+".qs"])}</textarea></div></div><div class="saved mt8">✓ Saved</div></div>`}
+  const prev=MODULES[idx-1],next=MODULES[idx+1];
+  h+=`<div class="flex between mt24">${prev?`<a class="btn ghost" href="#/${prev.id}">← ${esc(prev.short)}</a>`:"<span></span>"}${next?`<a class="btn" href="#/${next.id}">Next: ${esc(next.short)} →</a>`:`<a class="btn" href="#/dashboard">Back to Dashboard →</a>`}</div>`;
+  return h;
+}
+
+function renderSection(m,s){
+  const W=(inner,cls="")=>`<div class="card sec ${cls}">${inner}</div>`;
+  switch(s.t){
+  case "path": return W(secTitle(s.ico,s.h)+`<p class="muted">${esc(s.intro)}</p><div class="path mt12">${s.steps.map((x,i)=>`<span class="p">${esc(x)}</span>${i<s.steps.length-1?'<span class="ar">→</span>':""}`).join("")}</div><p class="mt16" style="margin-bottom:0"><b>${esc(s.outro)}</b></p>`);
+  case "checks": return W(secTitle(s.ico,s.h,s.sub)+`<div class="${s.cols?"cols2":"cklist"}">${s.items.map((x,i)=>ck(m.id+"."+s.id+"."+i,x)).join("")}</div>`);
+  case "outcomes": return W(secTitle("🏁","Call "+m.num+" outcomes","Tick each one off when you have it. Complete them all to finish this call.")+`<div class="cklist">${s.items.map((x,i)=>ck(m.id+".out."+i,x)).join("")}</div>`,"").replace('class="card sec "','class="card sec" style="border-color:rgba(232,180,79,.35)"');
+  case "cards": return W(secTitle(s.ico,s.h)+`<div class="grid ${s.items.length===4?"g2":s.items.length===3?"g3":"g2"}">${s.items.map(c=>`<div class="sub-card"><h3>${esc(c.h)}</h3>${c.b?`<div class="muted">${esc(c.b)}</div>`:""}${c.list?`<ul class="clean">${c.list.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</div>`).join("")}</div>`);
+  case "questions": return W(secTitle(s.ico,s.h,s.sub)+`<div class="${s.items.length>4?"grid g2":""}" style="gap:0 18px">`+s.items.map((q,i)=>`<div class="q"><div class="ql"><span class="qn">${i+1}.</span>${esc(q)}</div><textarea class="i" rows="2" data-a="${m.id}.${s.id}.${i}" placeholder="Your answer...">${esc(S.answers[m.id+"."+s.id+"."+i])}</textarea></div>`).join("")+`</div><div class="saved">✓ Saved</div>`);
+  case "radio": return W(secTitle(s.ico,s.h)+`<div class="radio">${s.options.map(([t,d])=>`<label><input type="radio" name="${m.id}.${s.id}" data-r="${m.id}.${s.id}" value="${esc(t)}" ${S.answers[m.id+"."+s.id]===t?"checked":""}><div><b>${esc(t)}</b><div class="muted" style="font-size:13.5px">${esc(d)}</div></div></label>`).join("")}</div>`);
+  case "role": return W(secTitle(s.ico,s.h)+`<p class="muted">${esc(s.intro)}</p><div class="chips">${s.items.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div><div class="quote mt16">${esc(s.quote)}</div>`);
+  case "rubric": return W(secTitle(s.ico,s.h)+`<div class="grid g2">
+    <div class="sub-card"><h3>✨ Standard Clean</h3><div class="tagline">Homes already maintained that need regular cleaning.</div><ul class="clean"><li>Busy families</li><li>Working professionals</li><li>Recurring clients</li><li>Homes that are not heavily neglected</li></ul></div>
+    <div class="sub-card"><h3>🧼 Deep Clean</h3><div class="tagline">The home needs a reset. Signs:</div><ul class="clean"><li>Heavy dust, grease buildup, soap scum</li><li>Pet hair, neglected bathrooms</li><li>Baseboards, buildup around appliances</li><li>Not professionally cleaned in months</li></ul></div>
+    <div class="sub-card"><h3>📦 Move-In / Move-Out</h3><div class="tagline">Home is empty or turning over. Usually more detail-heavy.</div><ul class="clean"><li>Inside cabinets and appliances</li><li>Baseboards and dust removal</li><li>Bathrooms and floors</li><li>Final presentation</li></ul></div>
+    <div class="sub-card"><h3>➕ Add-Ons (charge separately)</h3><div class="chips mt8">${["Inside fridge","Inside oven","Inside cabinets","Windows","Laundry","Dishes","Walls","Heavy pet hair","Excessive buildup"].map(x=>`<span class="chip">${x}</span>`).join("")}</div></div>
+    </div>`+toolLink(["pricer","Try it in the Job Pricer"]));
+  case "list": {
+    let inner;
+    if(s.style==="steps") inner=`<ol class="steps">${s.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
+    else inner=`<ul class="clean ${s.style||""}" ${s.cols?'style="columns:2;column-gap:28px"':""}>${s.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+    const cp=s.copy?`<div class="mt12"><button class="btn ghost sm" data-copylist="${m.id}-${s.h.length}">Copy all questions</button><textarea hidden id="cl-${m.id}-${s.h.length}">${esc(s.items.join("\n"))}</textarea></div>`:"";
+    return W(secTitle(s.ico,s.h,s.sub)+inner+cp+(s.quote?`<div class="quote mt16">${esc(s.quote)}<small>Simple beginner mindset</small></div>`:""));}
+  case "cleaner1": return W(secTitle(s.ico,s.h,"The first cleaner does not need to be perfect, but they do need to be reliable.")+`<div class="grid g2">
+    <div class="sub-card"><h3>Where to look</h3><ul class="clean">${["Facebook cleaning groups","Local community groups","Craigslist","Indeed if budget allows","Referral posts","Local cleaner outreach","Friends and family referrals"].map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="sub-card"><h3>What to screen for</h3><ul class="clean">${["Experience","Transportation","Supplies","Availability","Service area","Communication speed","Professionalism","Photos of past work","Willingness to follow instructions"].map(x=>`<li>${x}</li>`).join("")}</ul></div></div>
+    <h3 class="mt24">What to say</h3>${scriptBox("cleaner",SCRIPTS.cleaner)}
+    <div class="sub-card mt16" style="border-color:rgba(255,93,108,.3)"><h3>🚩 Red flags</h3><ul class="clean red" style="columns:2;column-gap:28px">${["Slow replies","No transportation","No clear availability","Bad attitude","No proof of work","Wants money before doing anything","Overpromises","Makes excuses early","Cannot answer basic questions directly"].map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <p class="muted mt16" style="margin-bottom:0">Treat your first cleaner as the beginning of your fulfillment system, not just someone who can clean.</p>`+toolLink(["cleaners","Add them to your Cleaner Pipeline"]));
+  case "customer1": return W(secTitle(s.ico,s.h,"Start with low-cost, manual methods. Skip paid ads unless you have the money, cleaner coverage, and sales confidence.")+`<div class="grid g2">
+    <div class="sub-card"><h3>Best first-client methods</h3><ul class="clean">${["Facebook group posts","Commenting on people looking for cleaners","Marketplace posts","Craigslist posts","Personal network","Realtor outreach","Airbnb host outreach","Property manager messages","Local community posts","Friends and family referrals"].map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="sub-card" style="border-color:rgba(232,180,79,.35)"><h3>🔥 Your daily first-customer plan</h3><ol class="steps">${DAILY.map(d=>`<li>${d.l}${d.t>1?" ("+d.t+")":""}</li>`).join("")}</ol><a class="btn sm mt12" href="#/daily">Track today's reps →</a></div></div>`);
+  case "four": return W(secTitle(s.ico,s.h,"A good booking has four things. Miss one and the owner gets pulled into chaos.")+`<div class="grid g4">${[["1","The right service type"],["2","The right price"],["3","A cleaner who can fulfill it"],["4","A customer with clear expectations"]].map(([n,t])=>`<div class="stat"><div class="n serif" style="color:var(--gold)">${n}</div><div style="font-weight:700;margin-top:6px">${t}</div></div>`).join("")}</div>`);
+  case "chips": return W(secTitle(s.ico,s.h)+`<div class="chips">${s.items.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div>`+toolLink(s.link));
+  case "fields": return W(secTitle(s.ico,s.h,s.sub)+`<div class="grid g2">${s.items.map(([k,l,ph,type])=>`<div><label class="f">${esc(l)}</label><input class="i" ${type?`type="${type}"`:""} data-a="guard.${k}" placeholder="${esc(ph)}" value="${esc(S.answers["guard."+k])}"></div>`).join("")}</div><div class="saved mt8">✓ Saved</div>`);
+  case "quote": return `<div class="sec"><div class="quote" style="font-size:19px">${esc(s.text)}${s.by?`<small>${esc(s.by)}</small>`:""}</div></div>`;
+  case "text": return W(secTitle(s.ico,s.h)+s.html+toolLink(s.link));
+  case "pay": return W(secTitle(s.ico,s.h,"A simple early model. Use judgment.")+`<div class="grid g2"><div class="result"><div class="flex between"><span>Cleaner</span><b>60 to 70%</b></div><div class="bar mt8"><i style="width:65%"></i></div><div class="flex between mt12"><span>Company keeps</span><b>30 to 40%</b></div><div class="bar blue mt8"><i style="width:35%"></i></div></div>
+    <div><div class="muted" style="margin-bottom:8px">The split may change based on:</div><div class="chips">${["Market","Job size","Distance","Difficulty","Supplies","Recurring vs one-time","Cleaner quality"].map(x=>`<span class="chip">${x}</span>`).join("")}</div><p class="mt12" style="margin-bottom:0"><b>Pay enough to keep good cleaners while still protecting margin.</b></p></div></div>`+toolLink(["pricer","Check a job's margin in the Job Pricer"]));
+  case "handoff": return W(secTitle(s.ico,s.h,"Copy this template into your texts or BookingKoala notes for every job.")+`<div class="chips">${HANDOFF.map(x=>`<span class="chip">${x}</span>`).join("")}</div><div class="mt16"><button class="btn sm" data-copyhandoff>Copy handoff template</button></div>`);
+  case "script": return W(secTitle(s.ico,s.h,"Do not overcomplicate outreach early.")+scriptBox(s.id,SCRIPTS[s.id]));
+  case "followup": return W(secTitle(s.ico,s.h,"Most beginners lose leads because they do not follow up. Build a simple manual system before GHL.")+`<div class="grid g2"><div class="sub-card"><h3>Use what you have</h3><div class="chips mt8">${["Notes app","Google Sheet","BookingKoala notes","Simple CRM","Calendar reminders"].map(x=>`<span class="chip">${x}</span>`).join("")}</div><h3 class="mt16">Timing</h3><div class="path">${["Same day","Next day","Final follow-up"].map((x,i,a)=>`<span class="p">${x}</span>${i<a.length-1?'<span class="ar">→</span>':""}`).join("")}</div></div><div><h3>Follow-up message</h3>${scriptBox("followup",SCRIPTS.followup)}</div></div>`+toolLink(["leads","Open my Lead Tracker"]));
+  case "gauge": {const n=s.items.filter((_,i)=>S.checks[m.id+"."+s.id+"."+i]).length;
+    return W(secTitle(s.ico,s.h,s.sub)+`<div class="cols2">${s.items.map((x,i)=>ck(m.id+"."+s.id+"."+i,x)).join("")}</div><div class="gauge" data-gauge="${m.id}.${s.id}" data-n="${s.items.length}" data-ready="${s.ready}" data-yes="${esc(s.yes)}" data-no="${esc(s.no)}">${gaugeInner(n,s.items.length,s.ready,s.yes,s.no)}</div>`);}
+  case "ladder": return W(secTitle(s.ico,s.h,"Tap the stage you are in today. Your mentor will help you know when to climb.")+ladderHTML());
+  case "metrics": return W(secTitle(s.ico,s.h)+`<div class="grid g4">${[["Sales",["Leads","Quotes","Booked jobs","Close rate","Average ticket","Lost reasons","Recurring offers","Recurring bookings"]],["Operations",["Jobs completed","Cleaner issues","Customer complaints","Recleans","Refunds","Late arrivals","No-shows"]],["Financials",["Revenue","Cleaner pay","Gross margin","Expenses","Profit","Cash collected"]],["Reputation",["Reviews requested","Reviews received","Average rating","Customer feedback"]]].map(([h,l])=>`<div class="sub-card"><h3>${h}</h3><ul class="clean">${l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>`+toolLink(["scorecard","Log this week in your Scorecard"]));
+  case "ninety": return W(secTitle(s.ico,s.h,"Tick focus areas as they become true for your business.")+`<div class="grid g3">${NINETY.map(p=>`<div class="sub-card"><div class="kicker">${p.h}</div><h3 class="mt8" style="font-family:Cinzel,serif">${p.g}</h3><div class="cklist">${p.items.map((x,i)=>ck(m.id+"."+p.id+"."+i,x)).join("")}</div></div>`).join("")}</div>`);
+  case "philo": return `<div class="hero sec" style="text-align:center">${SKYLINE}<div class="kicker">The Empire philosophy</div><h2 class="serif" style="font-size:24px;margin:10px 0 18px">Controlled progression toward freedom</h2><div class="path" style="justify-content:center">${["Do it manually","Make it repeatable","Delegate it","Automate it","Optimize it"].map((x,i,a)=>`<span class="p">${x}</span>${i<a.length-1?'<span class="ar">→</span>':""}`).join("")}</div><p class="muted mt16" style="max-width:640px;margin-left:auto;margin-right:auto">Validate cheaply, learn the model by hand, then reinvest profit into systems that save time. That is how a working professional builds a remote cleaning business without creating another full-time job.</p></div>`;
+  }
+  return "";
+}
+function gaugeInner(n,t,ready,yes,no){const ok=n>=ready;return `<span class="lab">${n} of ${t} true</span><div class="bar ${ok?"green":"blue"}" style="flex:1"><i style="width:${n/t*100}%"></i></div><span class="pill ${ok?"green":"blue"}">${ok?"Ready":"Not yet"}</span><div style="flex-basis:100%;font-size:13px" class="muted">${esc(ok?yes:no)}</div>`}
+function ladderHTML(){return `<div class="ladder">${LADDER.map((r,i)=>`<div class="rung ${i<S.ladder?"past":""} ${i===S.ladder?"here":""}" data-ladder="${i}"><div class="rn">${i+1}</div><div class="rb"><div class="flex between"><h3 style="margin:0">Stage ${i+1}: ${r.h}</h3>${i===S.ladder?'<span class="pill gold">You are here</span>':i<S.ladder?'<span class="pill green">Done</span>':""}</div><div class="muted" style="font-size:13.5px;margin-top:4px">${esc(r.goal)}</div><div class="rd"><div class="chips">${r.you.map(x=>`<span class="chip">${esc(x)}</span>`).join("")}</div>${r.tools?`<div class="muted mt12" style="font-size:12.5px">Tools: ${r.tools.join(" · ")}</div>`:""}</div></div></div>`).join("")}</div>`}
+
+/* ===================== DASHBOARD ===================== */
+function dayNum(){const s=new Date(S.profile.start+"T00:00:00");const n=Math.floor((new Date(today()+"T00:00:00")-s)/864e5)+1;return Math.max(1,n)}
+function phase(d){return d<=30?["Days 1 to 30","Prove the model"]:d<=60?["Days 31 to 60","Create repeatability"]:d<=90?["Days 61 to 90","Start buying back time"]:["Beyond day 90","Optimize and grow"]}
+function weekCalc(w){const rev=+w.revenue||0,cp=+w.cleanerPay||0,ex=+w.expenses||0;return{close:(+w.quotes)?Math.round((+w.booked||0)/(+w.quotes)*100):null,gm:rev?Math.round((rev-cp)/rev*100):null,profit:rev-cp-ex}}
+function milestones(){return [
+ {k:"cleaner",i:"🧹",t:"First cleaner approved",auto:S.cleaners.some(c=>c.status==="Approved"),h:"Auto from Cleaner Pipeline"},
+ {k:"customer",i:"🏠",t:"First customer booked",auto:S.leads.some(l=>l.status==="Booked"),h:"Auto from Lead Tracker"},
+ {k:"review",i:"⭐",t:"First review",auto:S.weeks.some(w=>+w.reviewsRec>0),h:"Auto from Scorecard"},
+ {k:"profit",i:"💰",t:"First profit",auto:S.weeks.some(w=>weekCalc(w).profit>0),h:"Auto from Scorecard"}
+]}
+function streak(){let n=0;let d=new Date();if(!dayComplete(today()))d.setDate(d.getDate()-1);while(dayComplete(today(d))){n++;d.setDate(d.getDate()-1)}return n}
+function dayScore(ds){const r=S.daily[ds]||{};return DAILY.filter(t=>(+r[t.id]||0)>=t.t).length}
+function dayComplete(ds){return dayScore(ds)===DAILY.length}
+
+function viewDash(){
+  const p=overallPct(),d=dayNum(),ph=phase(d),ns=nextStep(),C=2*Math.PI*62;
+  const name=S.profile.name?esc(S.profile.name.split(" ")[0]):"Founder";
+  const approved=S.cleaners.filter(c=>c.status==="Approved").length,booked=S.leads.filter(l=>l.status==="Booked").length;
+  const curIdx=MODULES.findIndex(m=>!outcomesDone(m));
+  let h=`<div class="hero">${SKYLINE}<div class="herorow">
+   <div class="ring"><svg width="100%" height="100%" viewBox="0 0 150 150"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe3a3"/><stop offset="1" stop-color="#c38a2a"/></linearGradient></defs><circle cx="75" cy="75" r="62" fill="none" stroke="#161e2e" stroke-width="12"/><circle cx="75" cy="75" r="62" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-p/100)}" style="transition:stroke-dashoffset 1s"/></svg><div class="v"><div><b>${p}%</b><span>Roadmap</span></div></div></div>
+   <div style="flex:1;min-width:260px"><div class="kicker">Day ${d} · ${ph[0]}</div><h1 style="margin-bottom:6px">Welcome back, ${name}.</h1><div class="lead">Your remote cleaning business${S.profile.area?` in <b style="color:var(--text)">${esc(S.profile.area)}</b>`:""}. Current focus: <b style="color:var(--gold)">${ph[1]}</b>.</div>
+   ${ns?`<div class="objective" style="margin-top:18px"><span style="font-size:18px">➡️</span><div style="flex:1"><b>Your next move (${esc(ns.m.short)}):</b> ${esc(ns.text)}</div><a class="btn sm" href="#/${ns.m.id}">Go</a></div>`:`<div class="ok mt16">Every call on your roadmap is complete. Keep your weekly scorecard going and keep climbing the ladder.</div>`}
+   </div></div></div>`;
+  h+=`<div class="card sec">${secTitle("🗺️","Your journey","Six steps from setup to running the business on numbers.")}<div class="journey">${MODULES.map((m,i)=>`<a class="jn ${outcomesDone(m)&&modulePct(m)>0?"done":""} ${i===curIdx?"cur":""}" href="#/${m.id}"><div class="dot"><span>${outcomesDone(m)&&modulePct(m)>0?"✓":m.num}</span></div><div class="t">${m.short}</div><div class="s">${modulePct(m)}% done</div></a>`).join("")}</div></div>`;
+  const today_=dayScore(today()),st=streak();
+  h+=`<div class="grid g4 sec"><div class="stat"><div class="n">${st}🔥</div><div class="l">Day streak</div></div><div class="stat"><div class="n">${today_}/${DAILY.length}</div><div class="l">Today's reps</div></div><div class="stat"><div class="n">${approved}</div><div class="l">Approved cleaners</div></div><div class="stat"><div class="n">${booked}</div><div class="l">Jobs booked</div></div></div>`;
+  h+=`<div class="card sec">${secTitle("🏅","Milestones","These light up automatically from your trackers. Tap to mark one manually.")}<div class="grid g4">${milestones().map(x=>{const on=x.auto||S.milestones[x.k];return `<div class="ms ${on?"on":""}" data-ms="${x.k}"><div class="mi">${x.i}</div><b>${x.t}</b><small>${on?"Unlocked":x.h}</small></div>`}).join("")}</div>
+   ${approved<2?`<div class="warn">${approved===0?"No approved cleaners yet. Supply comes first, so start your pipeline today.":"You have one approved cleaner. With only one cleaner, there is risk. Start recruiting a backup now."}</div>`:""}</div>`;
+  h+=`<div class="grid g2 sec"><div class="card"><div class="st"><div class="ico">🤝</div><div><h2>Your mentor</h2><div class="sub">${esc(S.profile.mentor||"Your mentor")} runs a cleaning business right now.</div></div></div><div class="flex">${S.profile.book?`<a class="btn blue" href="${esc(S.profile.book)}" target="_blank" rel="noopener">📅 Book your next call</a>`:`<span class="pill">📅 Booking link not added yet</span>`}${S.profile.community?`<a class="btn ghost" href="${esc(S.profile.community)}" target="_blank" rel="noopener">💬 Ask the community</a>`:""}</div><p class="muted mt12" style="margin-bottom:0;font-size:13px">Tip: fill in your call notes and questions on each call page before you join. Your mentor can do a lot more with 30 minutes when you come prepared.</p></div>
+   <div class="card"><div class="st"><div class="ico">🎯</div><div><h2>Targets to aim for</h2><div class="sub">Goals, not guarantees. They depend on your action.</div></div></div><div class="kv"><span>Business foundation set up</span><b>2 to 4 days</b></div><div class="kv"><span>First mentor call</span><b>Within 7 days</b></div><div class="kv"><span>First customer</span><b>14 to 21 days after Call 1</b></div><div class="kv"><span>Weekly reps streak</span><b>7 days in a row</b></div></div></div>`;
+  return h;
+}
+
+/* ===================== DAILY ===================== */
+function viewDaily(){
+  const ds=S._dailyDate||today();const r=S.daily[ds]||{};const sc=dayScore(ds);
+  let h=`<div class="kicker">Your Toolkit</div><h1>Daily Reps</h1><p class="lead">The simple daily first-customer plan from Call 1. Small reps, every day. That is what gets the first cleaner and the first customer.</p>`;
+  h+=`<div class="card sec"><div class="flex between"><div class="flex"><button class="btn ghost sm" data-day="-1">←</button><b style="min-width:150px;text-align:center">${ds===today()?"Today":new Date(ds+"T00:00:00").toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})}</b><button class="btn ghost sm" data-day="1" ${ds===today()?"disabled":""}>→</button></div><div class="flex"><span class="pill gold">${streak()} day streak 🔥</span><span class="pill ${sc===DAILY.length?"green":""}">${sc}/${DAILY.length} done</span></div></div>
+    <div class="bar mt16"><i style="width:${sc/DAILY.length*100}%"></i></div>
+    <div class="rows mt16">${DAILY.map(t=>{const v=+r[t.id]||0,met=v>=t.t;return `<div class="task ${met?"met":""}"><div class="tl">${t.l}<small>${t.s}</small></div>${t.bool?`<label class="ck" style="padding:0"><input type="checkbox" data-dt="${t.id}" ${met?"checked":""}><span class="box">${TICK}</span></label>`:`<div class="ctr"><button data-dc="${t.id}" data-v="-1">−</button><b>${v}/${t.t}</b><button data-dc="${t.id}" data-v="1">+</button></div>`}</div>`}).join("")}</div></div>`;
+  const cells=[];for(let i=27;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=today(d),s=dayScore(k);cells.push(`<div class="${s===DAILY.length?"h3":s>=4?"h2":s>0?"h1":""} ${k===today()?"td":""}" title="${k}: ${s}/${DAILY.length}">${d.getDate()}</div>`)}
+  h+=`<div class="card sec">${secTitle("📅","Last 28 days","Gold means every rep done.")}<div class="heat">${cells.join("")}</div></div>`;
+  return h;
+}
+
+/* ===================== PRICER ===================== */
+function viewPricer(){
+  const P=S.pricer;const minP=S.answers["guard.minPrice"];
+  const signs=["Heavy dust","Grease buildup","Soap scum","Pet hair","Neglected bathrooms","Buildup around appliances"];
+  const adds=["Inside fridge","Inside oven","Inside cabinets","Windows","Laundry","Dishes","Walls","Heavy pet hair","Excessive buildup"];
+  const cb=(g,x)=>`<label class="ck" style="padding:6px 8px"><input type="checkbox" data-pc="${g}" value="${esc(x)}" ${(P[g]||[]).includes(x)?"checked":""}><span class="box">${TICK}</span><span>${esc(x)}</span></label>`;
+  return `<div class="kicker">Your Toolkit</div><h1>Job Pricer</h1><p class="lead">Answer the qualification questions and this tells you what kind of job it is, what to charge extra for, and whether your price leaves room for the cleaner and for profit.</p>
+  <div class="grid g2 sec" style="align-items:start">
+   <div class="card"><h2>1. About the home</h2>
+    <div class="grid g3"><div><label class="f">Bedrooms</label><input class="i" type="number" min="0" data-p="beds" value="${esc(P.beds)}"></div><div><label class="f">Bathrooms</label><input class="i" type="number" min="0" step=".5" data-p="baths" value="${esc(P.baths)}"></div><div><label class="f">Sq ft (approx)</label><input class="i" type="number" min="0" data-p="sqft" value="${esc(P.sqft)}"></div></div>
+    <div class="grid g2 mt12"><div><label class="f">Empty or occupied?</label><select class="i" data-p="empty"><option value="occ" ${P.empty!=="empty"?"selected":""}>Occupied</option><option value="empty" ${P.empty==="empty"?"selected":""}>Empty / turning over</option></select></div>
+    <div><label class="f">Last professional cleaning</label><select class="i" data-p="last">${[["unknown","Not sure / did not ask"],["recent","Within the last month"],["1-3","1 to 3 months ago"],["3+","More than 3 months ago"],["never","Never"]].map(([v,l])=>`<option value="${v}" ${P.last===v?"selected":""}>${l}</option>`).join("")}</select></div></div>
+    <div class="grid g2 mt12"><div><label class="f">One-time or recurring?</label><select class="i" data-p="freq"><option value="one" ${P.freq!=="rec"?"selected":""}>One-time</option><option value="rec" ${P.freq==="rec"?"selected":""}>Recurring</option></select></div><div><label class="f">Distance</label><select class="i" data-p="far"><option value="in" ${P.far!=="far"?"selected":""}>Inside my service area</option><option value="far" ${P.far==="far"?"selected":""}>Far / outside my area</option></select></div></div>
+    <h3 class="mt24">Condition signs</h3><div class="cols2">${signs.map(x=>cb("signs",x)).join("")}</div>
+    <h3 class="mt16">Add-ons requested</h3><div class="cols2">${adds.map(x=>cb("adds",x)).join("")}</div>
+    <h2 class="mt24">2. Your quote</h2>
+    <div class="grid g3"><div><label class="f">Quote price ($)</label><input class="i" type="number" min="0" data-p="price" value="${esc(P.price)}"></div><div><label class="f">Cleaner pay %</label><input class="i" type="number" min="0" max="100" data-p="cleanerPct" value="${esc(P.cleanerPct)}"></div><div><label class="f">Other job costs ($)</label><input class="i" type="number" min="0" data-p="cost" value="${esc(P.cost)}" placeholder="supplies, travel"></div></div>
+    <div class="muted mt8" style="font-size:12.5px">Minimum job price: ${minP?`<b style="color:var(--text)">$${esc(minP)}</b>`:`not set yet (<a href="#/c2">set it in Call 2</a>)`}</div>
+    <div class="mt16"><button class="btn ghost sm" data-pricer-reset>Clear for a new job</button></div>
+   </div>
+   <div style="position:sticky;top:20px"><div class="card" id="pr-out"></div></div>
+  </div>`;
+}
+function calcPricer(){
+  const P=S.pricer,o=document.getElementById("pr-out");if(!o)return;
+  const signs=(P.signs||[]).length,adds=P.adds||[];
+  let type,why,photos=false;
+  if(P.empty==="empty"){type="Move-In / Move-Out Clean";why="The home is empty or turning over. Expect detail work: inside cabinets and appliances, baseboards, floors, final presentation."}
+  else if(signs>=2||P.last==="3+"||P.last==="never"){type="Deep Clean";why=(signs>=2?"Multiple condition signs. ":"")+(P.last==="3+"||P.last==="never"?"Not professionally cleaned in months. ":"")+"This home needs a reset. Do not sell it as a standard clean."}
+  else if(signs===1){type="Likely Deep Clean";why="One condition sign. Ask a couple more questions or request photos before you commit to a standard price.";photos=true}
+  else{type="Standard Clean";why="Maintained home, regular cleaning."+(P.freq==="rec"?" A great fit for recurring service.":" Offer recurring after the first clean.")}
+  if(signs>=3||(signs>=1&&P.last==="unknown"))photos=true;
+  const price=+P.price||0,pct=+P.cleanerPct||0,cost=+P.cost||0;
+  const cl=price*pct/100,keep=price-cl-cost,mg=price?keep/price*100:0;
+  let h=`<div class="kicker">Recommendation</div><div class="result mt8"><div class="big">${type}</div><div class="muted mt8">${esc(why)}</div></div>`;
+  if(photos)h+=`<div class="warn">📸 Ask for photos before pricing this one.</div>`;
+  if(P.last==="unknown"&&P.empty!=="empty")h+=`<div class="warn">Ask when the last professional cleaning was. It changes the job type.</div>`;
+  if(P.far==="far")h+=`<div class="warn">🚗 Outside your area. Only take it if it is priced for the travel.</div>`;
+  if(adds.length)h+=`<h3 class="mt16">Charge separately for</h3><div class="chips">${adds.map(x=>`<span class="chip">➕ ${esc(x)}</span>`).join("")}</div>`;
+  if(price){
+    h+=`<h3 class="mt24">The money</h3><div class="result"><div class="kv"><span>Quote</span><b>$${price.toFixed(2)}</b></div><div class="kv"><span>Cleaner (${pct}%)</span><b>$${cl.toFixed(2)}</b></div>${cost?`<div class="kv"><span>Other costs</span><b>$${cost.toFixed(2)}</b></div>`:""}<div class="kv"><span>Business keeps</span><b style="color:${keep>0?"var(--green)":"var(--red)"}">$${keep.toFixed(2)} (${mg.toFixed(0)}%)</b></div></div>`;
+    if(pct<60||pct>70)h+=`<div class="warn">Cleaner pay is outside the 60 to 70% starting guide. That can be right, but make sure it is on purpose.</div>`;
+    if(mg<30)h+=`<div class="warn">The business keeps under 30%. Always leave room for cleaner pay and profit. Do not discount out of fear.</div>`;
+    else h+=`<div class="ok">Healthy split. The cleaner is paid fairly and the business keeps margin.</div>`;
+    const mp=+S.answers["guard.minPrice"];if(mp&&price<mp)h+=`<div class="warn">Below your minimum job price of $${mp}. Walk away or re-scope.</div>`;
+  } else h+=`<p class="muted mt16" style="font-size:13px">Enter a quote price to check the cleaner pay and your margin.</p>`;
+  h+=`<p class="dim mt16" style="font-size:12px;margin-bottom:0">This classifies the job using the Call 1 rubric. Your mentor sets your actual prices with you in Call 2.</p>`;
+  o.innerHTML=h;
+}
+
+/* ===================== CLEANERS ===================== */
+const CSTAT=["New lead","Contacted","Interviewing","Approved","Not approved"];
+function viewCleaners(){
+  const ap=S.cleaners.filter(c=>c.status==="Approved").length;
+  let h=`<div class="kicker">Your Toolkit</div><h1>Cleaner Pipeline</h1><p class="lead">Cleaners are the real inventory of your business. Track every one of them here, before you need them.</p>
+  <div class="grid g4 sec">${CSTAT.slice(0,4).map(s=>`<div class="stat"><div class="n">${S.cleaners.filter(c=>c.status===s).length}</div><div class="l">${s}</div></div>`).join("")}</div>
+  ${ap<2?`<div class="warn">${ap?"One approved cleaner means risk. Keep recruiting a backup.":"No approved cleaners yet. Use the recruiting post in the Scripts Library to start."}</div>`:`<div class="ok">${ap} approved cleaners. You have backup coverage.</div>`}
+  <div class="card sec"><h2>Add a cleaner</h2><div class="grid g4">
+   <div><label class="f">Name</label><input class="i" id="cn-name"></div><div><label class="f">Phone</label><input class="i" id="cn-phone"></div><div><label class="f">Area served</label><input class="i" id="cn-area"></div><div><label class="f">Availability</label><input class="i" id="cn-avail" placeholder="e.g. weekdays"></div></div>
+   <div class="mt12"><label class="f">Experience</label><input class="i" id="cn-exp" placeholder="Years, types of cleaning"></div>
+   <div class="mt16"><button class="btn" data-addcleaner>+ Add to pipeline</button></div></div>
+  <div class="sec rows">`;
+  if(!S.cleaners.length)h+=`<div class="empty">No cleaners yet. Your first one is the start of your fulfillment system.</div>`;
+  S.cleaners.forEach(c=>{h+=`<div class="row" style="grid-template-columns:1.4fr 1fr 1.6fr auto"><div><b>${esc(c.name)}</b><div class="muted" style="font-size:12.5px">${esc(c.phone)}${c.area?" · "+esc(c.area):""}${c.avail?" · "+esc(c.avail):""}</div>${c.exp?`<div class="dim" style="font-size:12px">${esc(c.exp)}</div>`:""}</div>
+    <div><select class="i" data-cs="${c.id}">${CSTAT.map(s=>`<option ${c.status===s?"selected":""}>${s}</option>`).join("")}</select><div class="stars mt8" title="Reliability">${[1,2,3,4,5].map(n=>`<button class="${(c.rel||0)>=n?"on":""}" data-cr="${c.id}" data-n="${n}">★</button>`).join("")}</div></div>
+    <div class="flex" style="gap:4px">${[["sup","Supplies"],["trans","Transportation"],["photos","Photos of work"]].map(([k,l])=>`<label class="ck" style="padding:4px 6px;font-size:13px"><input type="checkbox" data-cf="${c.id}" data-f="${k}" ${c[k]?"checked":""}><span class="box" style="width:18px;height:18px">${TICK}</span><span>${l}</span></label>`).join("")}<input class="i mt8" placeholder="Notes" data-cnote="${c.id}" value="${esc(c.notes)}" style="font-size:13px;padding:7px 10px"></div>
+    <button class="btn danger sm" data-cdel="${c.id}">✕</button></div>`});
+  return h+`</div>`;
+}
+
+/* ===================== LEADS ===================== */
+const LSRC=["Facebook group","Marketplace","Craigslist","Personal network","Realtor","Airbnb host","Property manager","Referral","Google","Other"];
+const LSTAT=["New","Quoted","Booked","Lost"];
+function viewLeads(){
+  const q=S.leads.filter(l=>l.status!=="New").length,b=S.leads.filter(l=>l.status==="Booked").length;
+  let h=`<div class="kicker">Your Toolkit</div><h1>Lead Tracker</h1><p class="lead">Most beginners lose leads because they do not follow up. Log every inquiry and follow up the same day, the next day, and one final time.</p>
+  <div class="grid g4 sec"><div class="stat"><div class="n">${S.leads.length}</div><div class="l">Leads</div></div><div class="stat"><div class="n">${q}</div><div class="l">Quoted</div></div><div class="stat"><div class="n">${b}</div><div class="l">Booked</div></div><div class="stat"><div class="n">${q?Math.round(b/q*100)+"%":"-"}</div><div class="l">Close rate</div></div></div>
+  <div class="card sec"><h2>Add a lead</h2><div class="grid g4"><div><label class="f">Name</label><input class="i" id="ld-name"></div><div><label class="f">Source</label><select class="i" id="ld-src">${LSRC.map(s=>`<option>${s}</option>`).join("")}</select></div><div><label class="f">Service type</label><select class="i" id="ld-svc">${["Standard","Deep","Move-in / move-out","Not sure yet"].map(s=>`<option>${s}</option>`).join("")}</select></div><div><label class="f">Quote ($)</label><input class="i" type="number" id="ld-q"></div></div>
+  <div class="mt16"><button class="btn" data-addlead>+ Add lead</button></div></div><div class="sec rows">`;
+  if(!S.leads.length)h+=`<div class="empty">No leads yet. Today's reps are how they start coming in.</div>`;
+  S.leads.slice().reverse().forEach(l=>{const age=Math.floor((new Date(today()+"T00:00:00")-new Date(l.date+"T00:00:00"))/864e5);const fu=l.fu||[];
+   const due=l.status==="New"||l.status==="Quoted"?(fu.length<3?(age>=fu.length?`<span class="pill red">Follow-up due</span>`:""):""):"";
+   h+=`<div class="row" style="grid-template-columns:1.3fr 1fr 1.4fr auto"><div><b>${esc(l.name||"Unnamed lead")}</b> ${due}<div class="muted" style="font-size:12.5px">${esc(l.src)} · ${esc(l.svc)}${l.quote?" · $"+esc(l.quote):""} · ${age===0?"today":age+"d ago"}</div></div>
+   <div><select class="i" data-ls="${l.id}">${LSTAT.map(s=>`<option ${l.status===s?"selected":""}>${s}</option>`).join("")}</select>${l.status==="Lost"?`<input class="i mt8" placeholder="Lost reason" data-llost="${l.id}" value="${esc(l.lost)}" style="font-size:13px;padding:7px 10px">`:""}</div>
+   <div class="flex" style="gap:4px">${["Same day","Next day","Final"].map((x,i)=>`<label class="ck" style="padding:4px 6px;font-size:13px"><input type="checkbox" data-lf="${l.id}" data-i="${i}" ${fu.includes(i)?"checked":""}><span class="box" style="width:18px;height:18px">${TICK}</span><span>${x}</span></label>`).join("")}</div>
+   <button class="btn danger sm" data-ldel="${l.id}">✕</button></div>`});
+  return h+`</div><div class="card sec">${secTitle("✉️","Follow-up message")}${scriptBox("followup",SCRIPTS.followup)}</div>`;
+}
+
+/* ===================== SCORECARD ===================== */
+const WF=[["leads","Leads"],["quotes","Quotes"],["booked","Booked jobs"],["recurring","Recurring bookings"],["revenue","Revenue ($)"],["cleanerPay","Cleaner pay ($)"],["expenses","Expenses ($)"],["reviewsReq","Reviews requested"],["reviewsRec","Reviews received"],["complaints","Complaints / recleans"]];
+function viewScore(){
+  let h=`<div class="kicker">Your Toolkit</div><h1>Weekly Scorecard</h1><p class="lead">Owners manage through numbers. Log your week in five minutes and answer one question: <b style="color:var(--gold)">why did the business need me this week?</b> Every answer shows you the next system to build.</p>
+  <div class="card sec"><h2>Log a week</h2><div class="grid g4"><div><label class="f">Week starting</label><input class="i" type="date" id="wk-date" value="${today()}"></div>${WF.map(([k,l])=>`<div><label class="f">${l}</label><input class="i" type="number" min="0" id="wk-${k}"></div>`).join("")}</div>
+  <div class="mt12"><label class="f">Why did the business need me this week?</label><textarea class="i" id="wk-why" placeholder="e.g. I had to answer every lead myself, a cleaner cancelled and I scrambled..."></textarea></div>
+  <div class="mt16"><button class="btn" data-addweek>Save this week</button></div></div><div class="sec rows">`;
+  if(!S.weeks.length)h+=`<div class="empty">No weeks logged yet. Your first scorecard is your baseline.</div>`;
+  S.weeks.slice().sort((a,b)=>b.date.localeCompare(a.date)).forEach(w=>{const c=weekCalc(w);
+   h+=`<div class="row" style="grid-template-columns:1fr auto"><div><div class="flex between"><b>Week of ${esc(w.date)}</b><div class="flex">${c.close!=null?`<span class="pill blue">Close ${c.close}%</span>`:""}${c.gm!=null?`<span class="pill gold">Gross margin ${c.gm}%</span>`:""}<span class="pill ${c.profit>0?"green":c.profit<0?"red":""}">Profit $${c.profit.toFixed(0)}</span></div></div>
+   <div class="muted mt8" style="font-size:13px">${WF.map(([k,l])=>w[k]!==""&&w[k]!=null?`${l}: <b style="color:var(--text)">${esc(w[k])}</b>`:"").filter(Boolean).join(" · ")}</div>${w.why?`<div class="quote mt12" style="font-size:14px">${esc(w.why)}</div>`:""}</div><button class="btn danger sm" data-wdel="${w.id}">✕</button></div>`});
+  return h+`</div>`;
+}
+
+/* ===================== SCRIPTS ===================== */
+function viewScripts(){
+  return `<div class="kicker">Your Toolkit</div><h1>Scripts Library</h1><p class="lead">Every message from your roadmap, filled in with your service area${S.profile.area?` (<b style="color:var(--gold)">${esc(S.profile.area)}</b>)`:""}. Tap copy and send.</p>
+  <div class="card sec">${secTitle("🧹","Cleaner recruiting post","Call 1 · Facebook groups, Craigslist, community groups")}${scriptBox("cleaner",SCRIPTS.cleaner)}</div>
+  <div class="card sec">${secTitle("✉️","Direct outreach message","Call 4 · Realtors, Airbnb hosts, property managers")}${scriptBox("outreach",SCRIPTS.outreach)}</div>
+  <div class="card sec">${secTitle("🔔","Follow-up message","Call 4 · Same day, next day, final")}${scriptBox("followup",SCRIPTS.followup)}</div>
+  <div class="card sec">${secTitle("📦","Job handoff template","Call 3 · Send to your cleaner before every job")}<div class="chips">${HANDOFF.map(x=>`<span class="chip">${x}</span>`).join("")}</div><div class="mt16"><button class="btn sm" data-copyhandoff>Copy handoff template</button></div></div>
+  <div class="card sec">${secTitle("✍️","Scripts you build with your mentor","Call 2 outcomes. Draft them here and polish them on the call.")}
+   ${[["salescript","My cleaner sales script"],["confirm","My customer confirmation message"],["reviewreq","My review request message"],["myfollow","My follow-up message (my version)"]].map(([k,l])=>`<div class="q"><label class="f">${l}</label><textarea class="i" data-a="scripts.${k}" placeholder="Draft it here...">${esc(S.answers["scripts."+k])}</textarea></div>`).join("")}<div class="saved">✓ Saved</div></div>`;
+}
+
+/* ===================== SETTINGS ===================== */
+function profileForm(){const p=S.profile;return `<div class="grid g2"><div><label class="f">Your name</label><input class="i" id="pf-name" value="${esc(p.name)}"></div><div><label class="f">City / service area</label><input class="i" id="pf-area" value="${esc(p.area)}" placeholder="e.g. Austin, TX"></div>
+ <div><label class="f">Program start date</label><input class="i" type="date" id="pf-start" value="${esc(p.start)}"></div><div><label class="f">Hours per week you can give this</label><input class="i" id="pf-hours" value="${esc(p.hours)}" placeholder="e.g. 10"></div></div>
+ <div class="mt12"><label class="f">Your main goal</label><select class="i" id="pf-goal">${["","Build side income","Replace my income","Scale a real business"].map(g=>`<option ${p.goal===g?"selected":""}>${g}</option>`).join("")}</select></div>`}
+function readProfile(){["name","area","start","hours","goal"].forEach(k=>{const e=document.getElementById("pf-"+k);if(e)S.profile[k]=e.value.trim()});if(!S.profile.start)S.profile.start=today()}
+function viewSettings(){const p=S.profile;
+  return `<div class="kicker">Your Toolkit</div><h1>Settings</h1>
+  <div class="card sec"><h2>Your profile</h2>${profileForm()}
+   <h2 class="mt24">Mentor and links</h2><div class="grid g2"><div><label class="f">Mentor name</label><input class="i" id="pf-mentor" value="${esc(p.mentor)}"></div><div><label class="f">Booking link for mentor calls</label><input class="i" id="pf-book" value="${esc(p.book)}" placeholder="https://"></div><div><label class="f">Community link (Discord)</label><input class="i" id="pf-community" value="${esc(p.community)}" placeholder="https://"></div></div>
+   <div class="mt16"><button class="btn" data-saveprofile>Save</button></div></div>
+  <div class="card sec"><h2>Your data</h2><p class="muted">Your progress saves automatically in this browser. Export a backup to move it to another device.</p><div class="flex"><button class="btn ghost" data-export>⬇ Export backup</button><label class="btn ghost">⬆ Import backup<input type="file" accept=".json" hidden data-import></label><button class="btn danger" data-reset>Reset everything</button></div></div>`;
+}
+
+/* ===================== ONBOARDING ===================== */
+function openOnboard(){
+  document.getElementById("mbox").innerHTML=`<div style="text-align:center">${LOGO.replace("<svg",'<svg style="width:64px;height:64px;filter:drop-shadow(0 0 16px rgba(232,180,79,.4))"')}<div class="kicker mt12">Welcome to Empire Network</div><h1 style="font-size:26px">Let's build your business.</h1><p class="muted">This is your personal roadmap for every mentor call, checklist, script, and tracker. Tell us a little about you so it fits your situation.</p></div>${profileForm()}<div class="mt24"><button class="btn" style="width:100%" data-onboard>Enter my roadmap →</button></div>`;
+  document.getElementById("modal").classList.add("on");
+}
+
+/* ===================== EVENTS ===================== */
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2200)}
+function copy(t){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied ✓")).catch(()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove();toast("Copied ✓")})}
+function refreshProgress(){
+  MODULES.forEach(m=>{const p=modulePct(m);document.querySelectorAll(`[data-mini="${m.id}"],[data-mprog="${m.id}"]`).forEach(e=>e.style.width=p+"%");document.querySelectorAll(`[data-mprog-t="${m.id}"]`).forEach(e=>e.textContent=p+"%")});
+  document.querySelectorAll("[data-gauge]").forEach(g=>{const key=g.dataset.gauge,n=+g.dataset.n;let c=0;for(let i=0;i<n;i++)if(S.checks[key+"."+i])c++;g.innerHTML=gaugeInner(c,n,+g.dataset.ready,g.dataset.yes,g.dataset.no)});
+  const o=overallPct();document.querySelectorAll("[data-overall]").forEach(e=>e.style.width=o+"%");document.querySelectorAll("[data-overall-t]").forEach(e=>e.textContent=o+"%");
+}
+document.addEventListener("change",e=>{
+  const t=e.target,d=t.dataset;
+  if(d.k){const m=MODULES.find(x=>x.id===d.k.split(".")[0]);const was=outcomesDone(m);S.checks[d.k]=t.checked;save();refreshProgress();
+    if(!was&&outcomesDone(m)){confetti();toast(m.id==="p0"?"First week complete. You're ready for Call 1 🏛️":`Call ${m.num} complete. Empire building 🏛️`);renderSide()} else if(was&&!outcomesDone(m))renderSide();
+    if(t.checked&&overallPct()===100){confetti();toast("Your full roadmap is complete 👑")}return}
+  if(d.r){S.answers[d.r]=t.value;save();toast("Saved ✓");return}
+  if(d.p){S.pricer[d.p]=t.value;save();calcPricer();return}
+  if(d.pc){const a=new Set(S.pricer[d.pc]||[]);t.checked?a.add(t.value):a.delete(t.value);S.pricer[d.pc]=[...a];save();calcPricer();return}
+  if(d.dt){const ds=S._dailyDate||today();S.daily[ds]=S.daily[ds]||{};S.daily[ds][d.dt]=t.checked?1:0;save();render(true);if(dayComplete(ds)){confetti();toast("All reps done today 🔥")}return}
+  if(d.cs){const c=S.cleaners.find(x=>x.id===d.cs);const first=t.value==="Approved"&&!S.cleaners.some(x=>x.status==="Approved");c.status=t.value;save();render(true);if(first){confetti();toast("First cleaner approved 🧹")}return}
+  if(d.cf){const c=S.cleaners.find(x=>x.id===d.cf);c[d.f]=t.checked;save();return}
+  if(d.ls){const l=S.leads.find(x=>x.id===d.ls);const first=t.value==="Booked"&&!S.leads.some(x=>x.status==="Booked");l.status=t.value;save();render(true);if(first){confetti();toast("First customer booked 🏠")}return}
+  if(d.lf){const l=S.leads.find(x=>x.id===d.lf);const s=new Set(l.fu||[]);t.checked?s.add(+d.i):s.delete(+d.i);l.fu=[...s];save();render(true);return}
+  if(t.matches("[data-import]")){const f=t.files[0];if(!f)return;f.text().then(x=>{try{const j=JSON.parse(x);localStorage.setItem(KEY,JSON.stringify(j));S=load();render();toast("Backup restored ✓")}catch(err){toast("That file is not a valid backup")}})}
+});
+document.addEventListener("input",e=>{
+  const t=e.target,d=t.dataset;
+  if(d.a){S.answers[d.a]=t.value;saveSoon();return}
+  if(d.p&&t.tagName==="INPUT"){S.pricer[d.p]=t.value;saveSoon();calcPricer();return}
+  if(d.cnote){S.cleaners.find(x=>x.id===d.cnote).notes=t.value;saveSoon();return}
+  if(d.llost){S.leads.find(x=>x.id===d.llost).lost=t.value;saveSoon();return}
+});
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,[data-ladder],[data-ms]");if(!t)return;const d=t.dataset;
+  if(d.copy){copy(plainScript(SCRIPTS[d.copy]));return}
+  if(d.copylist!=null){copy(document.getElementById("cl-"+d.copylist).value);return}
+  if(t.hasAttribute("data-copyhandoff")){copy(HANDOFF.map(x=>x+": ").join("\n"));return}
+  if(d.ladder!=null){S.ladder=+d.ladder;save();const box=t.closest(".ladder");box.outerHTML=ladderHTML();toast(`Stage ${S.ladder+1}: ${LADDER[S.ladder].h}`);return}
+  if(d.ms){S.milestones[d.ms]=!S.milestones[d.ms];save();render(true);if(S.milestones[d.ms])confetti();return}
+  if(d.day){const cur=new Date((S._dailyDate||today())+"T00:00:00");cur.setDate(cur.getDate()+ +d.day);const k=today(cur);S._dailyDate=k>today()?today():k;render(true);return}
+  if(d.dc){const ds=S._dailyDate||today();S.daily[ds]=S.daily[ds]||{};const task=DAILY.find(x=>x.id===d.dc);const was=(+S.daily[ds][d.dc]||0)>=task.t;S.daily[ds][d.dc]=Math.max(0,(+S.daily[ds][d.dc]||0)+ +d.v);save();render(true);if(!was&&dayComplete(ds)){confetti();toast("All reps done today 🔥")}return}
+  if(t.hasAttribute("data-pricer-reset")){S.pricer={cleanerPct:S.pricer.cleanerPct||65};save();render(true);return}
+  if(t.hasAttribute("data-addcleaner")){const g=k=>document.getElementById("cn-"+k).value.trim();if(!g("name")){toast("Add a name first");return}S.cleaners.push({id:uid(),name:g("name"),phone:g("phone"),area:g("area"),avail:g("avail"),exp:g("exp"),status:"New lead",rel:0});save();render(true);toast("Cleaner added ✓");return}
+  if(d.cdel){if(confirm("Remove this cleaner?")){S.cleaners=S.cleaners.filter(x=>x.id!==d.cdel);save();render(true)}return}
+  if(d.cr){const c=S.cleaners.find(x=>x.id===d.cr);c.rel=+d.n;save();render(true);return}
+  if(t.hasAttribute("data-addlead")){const g=k=>document.getElementById("ld-"+k).value.trim();S.leads.push({id:uid(),name:g("name"),src:g("src"),svc:g("svc"),quote:g("q"),status:g("q")?"Quoted":"New",date:today(),fu:[]});save();render(true);toast("Lead added. Follow up today ✓");return}
+  if(d.ldel){if(confirm("Remove this lead?")){S.leads=S.leads.filter(x=>x.id!==d.ldel);save();render(true)}return}
+  if(t.hasAttribute("data-addweek")){const w={id:uid(),date:document.getElementById("wk-date").value||today(),why:document.getElementById("wk-why").value.trim()};WF.forEach(([k])=>w[k]=document.getElementById("wk-"+k).value);const hadProfit=S.weeks.some(x=>weekCalc(x).profit>0);S.weeks.push(w);save();render(true);if(!hadProfit&&weekCalc(w).profit>0){confetti();toast("First profitable week 💰")}else toast("Week saved ✓");return}
+  if(d.wdel){if(confirm("Delete this week?")){S.weeks=S.weeks.filter(x=>x.id!==d.wdel);save();render(true)}return}
+  if(t.hasAttribute("data-saveprofile")){readProfile();["mentor","book","community"].forEach(k=>S.profile[k]=document.getElementById("pf-"+k).value.trim());save();render(true);toast("Saved ✓");return}
+  if(t.hasAttribute("data-onboard")){readProfile();S.onboarded=true;save();document.getElementById("modal").classList.remove("on");render();confetti();toast("Welcome to Empire Network 🏛️");return}
+  if(t.hasAttribute("data-export")){const b=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="empire-roadmap-backup-"+today()+".json";a.click();return}
+  if(t.hasAttribute("data-reset")){if(confirm("This erases all your progress on this device. Continue?")){localStorage.removeItem(KEY);S=load();render();openOnboard()}return}
+});
+
+/* ===================== CONFETTI ===================== */
+function confetti(){const c=document.getElementById("confetti"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const cols=["#e8b44f","#ffe3a3","#c38a2a","#3d7bff","#8fb0ff","#ffffff"];const P=Array.from({length:150},()=>({x:innerWidth/2+(Math.random()-.5)*200,y:innerHeight*.35,vx:(Math.random()-.5)*14,vy:Math.random()*-13-4,s:Math.random()*7+4,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[Math.random()*cols.length|0],d:Math.random()<.5}));let f=0;(function tick(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.35;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;if(p.d){x.fillRect(-p.s/2,-p.s/2,p.s,p.s)}else{x.beginPath();x.moveTo(0,-p.s/1.4);x.lineTo(p.s/1.4,0);x.lineTo(0,p.s/1.4);x.lineTo(-p.s/1.4,0);x.fill()}x.restore()});if(++f<150)requestAnimationFrame(tick);else x.clearRect(0,0,c.width,c.height)})()}
+
+/* ===================== BOOT ===================== */
+render();
+if(!S.onboarded)openOnboard();
+</script>
+</body>
+</html>
